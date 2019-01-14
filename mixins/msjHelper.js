@@ -12,8 +12,15 @@ export default {
     {
       if(error.hasOwnProperty('response'))
       {
+        if(!error.response)
+        {
+          console.log(error)
+          this.mostrarBarraMsj( error, 'error')
+          return
+        }
+
         let status = error.response.status;
-        let msj    = '';
+        let msj    = 'response';
 
         switch (status) 
         {
