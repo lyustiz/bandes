@@ -14,7 +14,6 @@ export default {
       {
         if(!error.response)
         {
-          console.log(error)
           this.mostrarBarraMsj( error, 'error')
           return
         }
@@ -25,7 +24,7 @@ export default {
         switch (status) 
         {
           case 500:
-            msj = 'Error interno ->' + error.response.data.message
+            msj = 'Error interno : ' + error.response.data.message
             break;
 
           case 404:
@@ -54,13 +53,6 @@ export default {
             for (var idx in error.response.data.errors) 
             {
               msj = msj + error.response.data.errors[idx];
-            }
-            break;
-          
-          case 400:
-            for (var idx in error.response.data) 
-            {
-              msj = msj + error.response.data[idx];
             }
             break;
 

@@ -16,7 +16,7 @@ export default {
             buscar: '',
             accion: '',
             nb_accion: '',
-            dialogo: false,
+            verDialogo: false,
         }
     },
     filters: {
@@ -76,13 +76,13 @@ export default {
         },
         delForm (item) {
 
-            this.dialogo = true;
+            this.verDialogo = true;
             this.item = item;
             
         },
         delCancel () {
 
-            this.dialogo = false;
+            this.verDialogo = false;
             
         }
         

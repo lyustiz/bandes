@@ -37,7 +37,7 @@ export default {
         },
         eliminar()
         {
-            this.$emit('eliminar',this.item); 
+            this.$emit('eliminar',123); 
         },
     },
     props:{

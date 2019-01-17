@@ -51,7 +51,7 @@
                 </td>
                 <!--acciones-->
                 <td class="text-xs-left">
-                    <list-btn @editar="updItem(item.item)" :del="false">
+                    <list-btn @editar="updItem(item.item)" @eliminar="delForm(item.item)" >
                     </list-btn>
                 </td>
 
@@ -76,17 +76,19 @@
       <!--  <form-container :nb-accion="nb_accion" :modal="modal" @cerrarModal="cerrarModal">
             <banco-form :accion="accion" :item="item" @cerrarModal="cerrarModal"></banco-form>
         </form-container>
-
+-->
         <dialogo 
-            :dialogo="dialogo" 
-            :mensaje="'Desea Eliminar el Banco: ' + item.nb_banco "
-            @delItem="delItem"
-            @delCancel="delCancel"
+            :dialogo="verDialogo" 
+            :mensaje="'Desea Eliminar el Banco: '"
+            @confirmar="delItem"
+            @cancelar="delCancel" 
         >
         </dialogo>
-        -->
+        
         <mensaje></mensaje> 
+        <pre>{{ $data }}</pre>
     </v-container>
+    
 
 </template>
 
@@ -111,29 +113,33 @@ export default {
     },
     methods:
     {
+
         list () {
            axios.get('http://127.0.0.1:5400/api/banco')
-            .then(respuesta => {
+            .then(respuesta => 
+            {
                 this.items = respuesta.data;
                 this.IsLoading = false
             })
-            .catch(error => {
+            .catch(error => 
+            {
                 this.verError(error)
                 this.IsLoading = false
             })
         },
         delItem(){
-            axios.delete('/api/v1/banco/'+this.item.id_banco)
-            .then(respuesta => {
-
+            axios.delete('http://127.0.0.1:5400/api/v1/banco/' + this.item.id_banco)
+            .then(respuesta => 
+            {
                 this.verMsj(respuesta.data.msj)
                 this.list();
                 this.item = '';
                 this.dialogo = false;
-                
             })
-            .catch(error => {
+            .catch(error => 
+            {
                 this.verError(error)    
+                this.dialogo = false;
             })
 
         }
