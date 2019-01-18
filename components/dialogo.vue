@@ -3,8 +3,8 @@
         
         <v-card>
          
-        <v-card-title class="info white--text">Atencion</v-card-title>
-        <v-card-text><p><v-icon color="info">error</v-icon>{{ msj}}</p></v-card-text>
+        <v-card-title class="warning white--text"><v-icon dark >error</v-icon> Atencion </v-card-title>
+        <v-card-text><p>{{ msj}}</p></v-card-text>
 
         <v-card-actions>
 
